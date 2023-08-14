@@ -9,15 +9,8 @@ jobs:
   Depoy-Site:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out repository code
-        uses: actions/checkout@v3
-
-      - name: Install and configure dependencies
-        run: |
-            npm install -g --silent gh-pages@2.0.1
-            git config user.email "ci-builder"
-            git config user.name "ci-builder"
-      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
-      - name: Deploy site to gh-pages branch
-        run: gh-pages --dotfiles --message  "[skip ci] Updates" --dist site/
-      - run: echo "🍏 This job's status is ${{ job.status }}."
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./site
