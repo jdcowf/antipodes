@@ -1,0 +1,23 @@
+name: Publish To Pages
+run-name: Deploying change by ${{ github.actor }}
+on:
+  push:
+    branches:
+      - main
+      - jdcowf-patch-1
+jobs:
+  Depoy-Site:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+
+      - name: Install and configure dependencies
+        run: |
+            npm install -g --silent gh-pages@2.0.1
+            git config user.email "ci-builder"
+            git config user.name "ci-builder"
+      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
+      - name: Deploy site to gh-pages branch
+        run: gh-pages --dotfiles --message  "[skip ci] Updates" --dist site/
+      - run: echo "🍏 This job's status is ${{ job.status }}."
