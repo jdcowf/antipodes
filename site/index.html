@@ -1,1 +1,107 @@
-hello world
+
+<!DOCTYPE html>
+<html lang="en">
+  <title>Antipodes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://unpkg.com/tachyons@4.12.0/css/tachyons.min.css"/>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+        crossorigin=""/>
+  <!-- Make sure you put this AFTER Leaflet's CSS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+          integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+          crossorigin=""></script>
+  
+  <body class="near-black bg-near-white">
+    <main class="flex flex-column min-vh-100 bg-near-white near-black">
+      <header class="w-100 tl ph4 pv1 f1 bg-near-black near-white center">
+        ANTIPODES
+      </header>
+
+      <section class="flex flex-auto">
+        <div class="w-100 w-50-l pa4-l pr4-l ph4 pt4 pb2">
+          <div id="map" class="h-100 w-100 pa4"></div>
+        </div>
+
+        <div class="w-100 w-50-l pa4-l pl2-l ph4 pt4 pb2">
+          <div class="flex flex-column-ns flex-column-reverse h-100">
+
+            <div class="w-100 h-50  pb3-ns">
+              <div class="bg-white h-100 w-100 bg-green">
+                Lorem Ipsum
+              </div>
+            </div>
+
+            <div class="w-100 h-50 pt3-ns">
+              <div id="antimap" class="h-100 w-100 pa4 "></div> 
+            </div>
+          </div>
+        </div>
+        <!-- <div class="center w-100">
+          <div class=cf>
+            <div class="fl w-100 h-100 w-50-l pa4-l pr4-l ph4 pt4 pb2 bg-blue">
+              <div id="map" class="h-100 outline pv4"></div>
+              <p id="lat-lon" class="gray tc"><b>Lat</b>: 0.000  <b>Lon</b>:  0.000</p>
+            </div>
+
+            <div class="fl w-100 w-50-l pa4-l pl2-l ph4 pt4 pb2">
+                <div class="w-100 outline bg-white pa4">
+                  <form>
+                    <label for="lat">Lat:</label>
+                    <input type="number" name="lat">
+                    <br>
+                    <label for="lon">Lon:</label>
+                    <input type="number" name="lon">
+                  </form>
+                </div>
+
+                <div class="w-100 outline bg-white pa4">
+                  <blockquote class="athelas ml0 mt0 pl4 black-60 bl bw2 b--grey">
+                    <p class="f4-ns f-5 lh-copy measure mt0">
+                    Yonde in Ethiopia ben the Antipodes, men that haue theyr fete ayenst our fete.
+                    </p>
+                    <cite class="f7 ttu tracked fs-normal">-Bartholomew Glanville, "De proprietatibus rerum," c. 1240,<br>translated by John of Trevisa c. 1398</cite>
+                  </blockquote>
+                </div>
+            </div>
+          </div>
+        </div> -->
+      </section>
+
+
+    <footer class="tc silver">
+      @<a href="https://jdcowf.github.io" class=silver>jdcowf</a>
+    </footer>
+
+
+    </main>
+
+  </body>
+
+  <script>
+
+    var map = L.map('map').setView([51.505, -0.09], 13);
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '© OpenStreetMap'
+    }).addTo(map);
+
+    function onMapClick(e) {
+        alert("You clicked the map at " + e.latlng);
+    }
+
+    // Antipode Map
+    var antimap = L.map('antimap').setView([51.505, -0.09], 13);
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '© OpenStreetMap'
+    }).addTo(antimap);
+
+    function onMapClick(e) {
+        alert("You clicked the map at " + e.latlng);
+    }
+
+    map.on('click', onMapClick);
+
+  </script>
+</html>
