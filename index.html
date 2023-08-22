@@ -76,7 +76,7 @@
         
     document.getElementById("latlng").innerHTML = lat + ", " + lng + ", " + antilat + ", " + antilng
         
-        antimap.setView(new L.LatLng(-antilat, antilng), e.target.getZoom());
+        antimap.setView(new L.LatLng(antilat, antilng), e.target.getZoom());
         
     }
     map.on('move', onMapMove);
