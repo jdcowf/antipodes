@@ -1,4 +1,4 @@
-# [antipodes](https://jdcowf.github.io/antipodes)
+# antipodes
 
 ![Deploy Stauts](https://github.com/jdcowf/antipodes/actions/workflows/deploy-pages.yml/badge.svg)
 
