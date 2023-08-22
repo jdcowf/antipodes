@@ -14,21 +14,21 @@
   
   <body class="near-black bg-near-white">
     <main class="flex flex-column min-vh-100 bg-near-white near-black">
-      <header class="w-100 tl ph4 pv1 f1 bg-near-black near-white center">
+      <header class="w-100 tl-ns tc ph4 pv1 f1 bg-near-black near-white center">
         ANTIPODES
       </header>
 
-      <section class="flex flex-auto">
-        <div class="w-100 w-50-l pa4-l pr4-l ph4 pt4 pb2">
+      <section class="flex flex-auto flex-column flex-row-ns">
+        <div class="w-100 w-50-l pa4-l pr4-l ph4 pt4 pb2 flex-auto bg-pink">
           <div id="map" class="h-100 w-100 pa4"></div>
         </div>
 
-        <div class="w-100 w-50-l pa4-l pl2-l ph4 pt4 pb2">
+        <div class="w-100 w-50-l pa4-l pl2-l ph4 pt4 pb2 flex-auto">
           <div class="flex flex-column-ns flex-column-reverse h-100">
 
             <div class="w-100 h-50  pb3-ns">
               <div class="bg-white h-100 w-100 bg-green">
-                Lorem Ipsum
+                <p id="latlng"></p>
               </div>
             </div>
 
@@ -37,35 +37,6 @@
             </div>
           </div>
         </div>
-        <!-- <div class="center w-100">
-          <div class=cf>
-            <div class="fl w-100 h-100 w-50-l pa4-l pr4-l ph4 pt4 pb2 bg-blue">
-              <div id="map" class="h-100 outline pv4"></div>
-              <p id="lat-lon" class="gray tc"><b>Lat</b>: 0.000  <b>Lon</b>:  0.000</p>
-            </div>
-
-            <div class="fl w-100 w-50-l pa4-l pl2-l ph4 pt4 pb2">
-                <div class="w-100 outline bg-white pa4">
-                  <form>
-                    <label for="lat">Lat:</label>
-                    <input type="number" name="lat">
-                    <br>
-                    <label for="lon">Lon:</label>
-                    <input type="number" name="lon">
-                  </form>
-                </div>
-
-                <div class="w-100 outline bg-white pa4">
-                  <blockquote class="athelas ml0 mt0 pl4 black-60 bl bw2 b--grey">
-                    <p class="f4-ns f-5 lh-copy measure mt0">
-                    Yonde in Ethiopia ben the Antipodes, men that haue theyr fete ayenst our fete.
-                    </p>
-                    <cite class="f7 ttu tracked fs-normal">-Bartholomew Glanville, "De proprietatibus rerum," c. 1240,<br>translated by John of Trevisa c. 1398</cite>
-                  </blockquote>
-                </div>
-            </div>
-          </div>
-        </div> -->
       </section>
 
 
@@ -100,7 +71,18 @@
     function onMapClick(e) {
         alert("You clicked the map at " + e.latlng);
     }
-
+    
+    function onMapMove(e) {
+        const {lat, lng} = e.target.getCenter();
+        document.getElementById("latlng").innerHTML = lat + ", " + lng
+        
+        antilat = -lat
+        antilng = lng > 0 ? lng - 180 : lng + 180
+        
+        antimap.setView(new L.LatLng(-antilat, antilng), e.target.getZoom());
+        
+    }
+    map.on('move', onMapMove);
     map.on('click', onMapClick);
 
   </script>
