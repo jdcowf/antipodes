@@ -59,33 +59,26 @@
         attribution: '© OpenStreetMap'
     }).addTo(map);
 
-    function onMapClick(e) {
-        alert("You clicked the map at " + e.latlng);
-    }
-
     // Antipode Map
     var antimap = L.map('antimap').setView([51.505, -0.09], 13);
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '© OpenStreetMap'
     }).addTo(antimap);
-
-    function onMapClick(e) {
-        alert("You clicked the map at " + e.latlng);
-    }
     
     function onMapMove(e) {
         const {lat, lng} = e.target.getCenter();
-        document.getElementById("latlng").innerHTML = lat + ", " + lng
         
         antilat = -lat
         antilng = lng > 0 ? lng - 180 : lng + 180
+        
+    document.getElementById("latlng").innerHTML = lat + ", " + lng + ", " + antilat + ", " + antilng
         
         antimap.setView(new L.LatLng(-antilat, antilng), e.target.getZoom());
         
     }
     map.on('move', onMapMove);
-    map.on('click', onMapClick);
+
 
   </script>
 </html>
